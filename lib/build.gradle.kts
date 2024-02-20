@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id ("com.android.library") version "8.4.0-alpha10"
 }
 
 group = "ndk.banee"
@@ -19,6 +20,15 @@ kotlin {
 //        jvmToolchain(20)
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
+        }
+    }
+
+    androidTarget {
+        publishAllLibraryVariants()
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "17"
+            }
         }
     }
 
