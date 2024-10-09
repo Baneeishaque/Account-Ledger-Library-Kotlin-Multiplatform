@@ -116,7 +116,7 @@ kotlin {
                 implementation(
                     dependencyNotation = project.dependencies.platform(
 
-                        /* notation = */ "io.ktor:ktor-bom:3.0.0-tls-eap-907"
+                        /* notation = */ "io.ktor:ktor-bom:3.0.0"
                     )
                 )
                 implementation(dependencyNotation = "io.ktor:ktor-client-core")
