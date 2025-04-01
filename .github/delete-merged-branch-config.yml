@@ -1,0 +1,4 @@
+exclude:
+  - main
+  - common-lib-multi-platform
+delete_closed_pr: false
