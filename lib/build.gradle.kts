@@ -181,7 +181,7 @@ kotlin {
 android {
 
     namespace = "account_ledger_library.multi_platform"
-    compileSdk = 34
+    compileSdk = 35
 
     compileOptions {
 
