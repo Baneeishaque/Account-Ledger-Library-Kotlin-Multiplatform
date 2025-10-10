@@ -67,34 +67,34 @@ kotlin {
         }
     }
 
-    fun getNativeTarget(): KotlinNativeTarget {
-
-        val hostOs: String = System.getProperty("os.name")
-        val isArm64: Boolean = System.getProperty("os.arch") == "aarch64"
-        val isMingwX64: Boolean = hostOs.startsWith(prefix = "Windows")
-        return when {
-
-            hostOs == "Mac OS X" && isArm64 -> macosArm64()
-//        hostOs == "Mac OS X" && !isArm64 -> KotlinNativeSupportedOs.MacOsX64
-//        hostOs == "Linux" && isArm64 -> KotlinNativeSupportedOs.LinuxArm64
-            hostOs == "Linux" && !isArm64 -> linuxX64()
-            isMingwX64 -> mingwX64()
-            else -> throw GradleException("Unsupported OS.")
-        }
-    }
-
-    val nativeTarget: KotlinNativeTarget = getNativeTarget()
-    nativeTarget.apply {
-
-        binaries {
-
-            staticLib {
-
-                //TODO : Rename sub module to avoid basename property
-                baseName = libraryName
-            }
-        }
-    }
+//    fun getNativeTarget(): KotlinNativeTarget {
+//
+//        val hostOs: String = System.getProperty("os.name")
+//        val isArm64: Boolean = System.getProperty("os.arch") == "aarch64"
+//        val isMingwX64: Boolean = hostOs.startsWith(prefix = "Windows")
+//        return when {
+//
+//            hostOs == "Mac OS X" && isArm64 -> macosArm64()
+////        hostOs == "Mac OS X" && !isArm64 -> KotlinNativeSupportedOs.MacOsX64
+////        hostOs == "Linux" && isArm64 -> KotlinNativeSupportedOs.LinuxArm64
+//            hostOs == "Linux" && !isArm64 -> linuxX64()
+//            isMingwX64 -> mingwX64()
+//            else -> throw GradleException("Unsupported OS.")
+//        }
+//    }
+//
+//    val nativeTarget: KotlinNativeTarget = getNativeTarget()
+//    nativeTarget.apply {
+//
+//        binaries {
+//
+//            staticLib {
+//
+//                //TODO : Rename sub module to avoid basename property
+//                baseName = libraryName
+//            }
+//        }
+//    }
 
     sourceSets.all {
 
@@ -136,45 +136,45 @@ kotlin {
             }
         }
 
-        when (nativeTarget.konanTarget) {
-
-            KonanTarget.MINGW_X64 -> {
-
-                val nativeMain: KotlinSourceSet by getting {
-
-                    dependencies {
-
+//        when (nativeTarget.konanTarget) {
+//
+//            KonanTarget.MINGW_X64 -> {
+//
+//                val nativeMain: KotlinSourceSet by getting {
+//
+//                    dependencies {
+//
+////                        implementation(dependencyNotation = "io.ktor:ktor-client-curl")
+//                        implementation(dependencyNotation = "io.ktor:ktor-client-winhttp")
+//                    }
+//                }
+//            }
+//
+//            KonanTarget.LINUX_X64 -> {
+//
+//                val nativeMain: KotlinSourceSet by getting {
+//
+//                    dependencies {
+//
 //                        implementation(dependencyNotation = "io.ktor:ktor-client-curl")
-                        implementation(dependencyNotation = "io.ktor:ktor-client-winhttp")
-                    }
-                }
-            }
-
-            KonanTarget.LINUX_X64 -> {
-
-                val nativeMain: KotlinSourceSet by getting {
-
-                    dependencies {
-
-                        implementation(dependencyNotation = "io.ktor:ktor-client-curl")
-//                        implementation(dependencyNotation = "io.ktor:ktor-client-cio")
-                    }
-                }
-            }
-
-            KonanTarget.MACOS_ARM64 -> {
-
-                val nativeMain: KotlinSourceSet by getting {
-
-                    dependencies {
-
-                        implementation(dependencyNotation = "io.ktor:ktor-client-darwin")
-                    }
-                }
-            }
-
-            else -> throw GradleException("Unsupported OS.")
-        }
+////                        implementation(dependencyNotation = "io.ktor:ktor-client-cio")
+//                    }
+//                }
+//            }
+//
+//            KonanTarget.MACOS_ARM64 -> {
+//
+//                val nativeMain: KotlinSourceSet by getting {
+//
+//                    dependencies {
+//
+//                        implementation(dependencyNotation = "io.ktor:ktor-client-darwin")
+//                    }
+//                }
+//            }
+//
+//            else -> throw GradleException("Unsupported OS.")
+//        }
     }
 }
 
