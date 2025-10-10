@@ -74,7 +74,7 @@ kotlin {
         val isMingwX64: Boolean = hostOs.startsWith(prefix = "Windows")
         return when {
 
-//        hostOs == "Mac OS X" && isArm64 -> KotlinNativeSupportedOs.MacOsArm64
+            hostOs == "Mac OS X" && isArm64 -> macosArm64()
 //        hostOs == "Mac OS X" && !isArm64 -> KotlinNativeSupportedOs.MacOsX64
 //        hostOs == "Linux" && isArm64 -> KotlinNativeSupportedOs.LinuxArm64
             hostOs == "Linux" && !isArm64 -> linuxX64()
@@ -158,6 +158,17 @@ kotlin {
 
                         implementation(dependencyNotation = "io.ktor:ktor-client-curl")
 //                        implementation(dependencyNotation = "io.ktor:ktor-client-cio")
+                    }
+                }
+            }
+
+            KonanTarget.MACOS_ARM64 -> {
+
+                val nativeMain: KotlinSourceSet by getting {
+
+                    dependencies {
+
+                        implementation(dependencyNotation = "io.ktor:ktor-client-darwin")
                     }
                 }
             }
