@@ -88,7 +88,7 @@ kotlin {
 
         binaries {
 
-            staticLib {
+            sharedLib {
 
                 //TODO : Rename sub module to avoid basename property
                 baseName = libraryName
